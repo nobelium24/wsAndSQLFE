@@ -2,7 +2,8 @@ import React from 'react'
 import { Layout } from '../components/Layout'
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import "../signUp.scss"
+import "../signUp.scss";
+import { signUp } from '../services';
 // import { Link } from 'react-router-dom';
 
 interface FormValues {
@@ -51,40 +52,41 @@ const SignUpPage:React.FC = () => {
     return (
         <Layout showNavbar={true} showSidebar={true}>
             <div id='signUpDiv'>
-                <div className='px-5' id='divOne'>
+                <div className='px-5' id='signUpDivOne'>
                     <h6 className='my-2 display-6'>Sign Up</h6>
                     <Formik
                         initialValues={{ firstName: '', lastName: '', email: '', password: '', userName: '' }}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            console.log(values);
-                            setSubmitting(false);
-                        }}>
+                        onSubmit={async(values: FormValues)=>{
+                            console.log(values)
+                            const response = await signUp(values)
+                            console.log(response)
+                        }}
+                        >
                             {({errors, touched})=>{
                                 return(
-                                <Form>
-                                    <label style={{color:"#0077B5"}}>First name</label>
+                                <Form className='w-100'>
+                                    <label style={{color:"white"}}>First name</label>
                                     <Field className="form-control w-100 my-2" name="firstName" />
                                     {errors.firstName && touched.firstName ? (<div style={{color:"red"}}>{errors.firstName}</div>) : null}
 
-                                    <label style={{color:"#0077B5"}}>Last name</label>
+                                    <label style={{color:"white"}}>Last name</label>
                                     <Field className="form-control w-100 my-2" name="lastName" />
                                     {errors.lastName && touched.lastName ? (<div style={{color:"red"}}>{errors.lastName}</div>) : null}
 
-                                    <label style={{color:"#0077B5"}}>Email</label>
+                                    <label style={{color:"white"}}>Email</label>
                                     <Field className="form-control w-100 my-2" name="email" type="email" />
                                     {errors.email && touched.email ? <div style={{color:"red"}}>{errors.email}</div> : null}
 
-                                    <label style={{color:"#0077B5"}}>User name</label>
+                                    <label style={{color:"white"}}>User name</label>
                                     <Field className="form-control w-100 my-2" name="userName" />
                                     {errors.userName && touched.userName ? <div style={{color:"red"}}>{errors.userName}</div> : null}
 
-                                    <label style={{color:"#0077B5"}}>Password</label>
+                                    <label style={{color:"white"}}>Password</label>
                                     <Field className="form-control w-100 my-2" name="password" type="password" />
                                     {errors.password && touched.password ? <div style={{color:"red"}}>{errors.password}</div> : null}
 
-                                    <button type="submit" className='btn btn-info my-2' 
-                                    style={{backgroundColor:"#0077B5", color:"white", border:"none"}}>Submit</button>
+                                    <button type="submit" className='btn btn-dark'>Submit</button>
 
                                 {/* <p>Have an account? <Link href="/user/signin" style={{color:"#0077B5"}}>Sign in</Link></p>
                                 <p className='text-center'><Link href='/' style={{color:"#0077B5"}}>Click here</Link> to go to landing page</p> */}
@@ -95,7 +97,7 @@ const SignUpPage:React.FC = () => {
                             }}
                         </Formik>
                 </div>
-                <div id='divTwo'>
+                <div id='signUpDivTwo'>
                     <img src="../../public/undraw_sign_up_n6im.svg" alt="" />
                 </div>
             </div>
