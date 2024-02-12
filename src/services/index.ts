@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Post } from '../pages/MainPage';
+import { BASE_URL } from '../constants';
 
-const BASE_URL = 'http://localhost:3000';
 
 type SignUpData = {
     firstName: string;
