@@ -38,23 +38,29 @@ const LoginPage:React.FC = () => {
                     <BeatLoader color={'#123abc'} loading={loading} size={15} />
                     <h6 className='my-2 display-6'>Log in</h6>
                     <Formik
-                        initialValues={{ firstName: '', lastName: '', email: '', password: '', userName: '' }}
+                        initialValues={{ email: '', password: '' }}
                         validationSchema={validationSchema}
                         onSubmit={async(values: FormValues)=>{
                             setLoading(true);
                             console.log(values)
 
-                            const response = await login(values)
-                            console.log(response)
-
-                            if(response.status === 200){
-                                localStorage.setItem('token', response.data.token);
-                                toast.success('Logged in successfully');
-                                // setLoading(false);
-                                navigate('/mainpage');
-                            }else{
-                                // setLoading(false);
-                                toast.error('Invalid email or password');
+                            try {
+                                const response = await login(values)
+                                console.log(response)
+    
+                                if(response.status === 200){
+                                    localStorage.setItem('token', response.data.token);
+                                    toast.success('Logged in successfully');
+                                    // setLoading(false);
+                                    navigate('/mainpage');
+                                }else if(response.status === 401 || response.status === 404 ){
+                                    // setLoading(false);
+                                    toast.error('Invalid email or password');
+                                }
+                            } catch (error) {
+                                toast.error('Network error');
+                            }finally {
+                                setLoading(false);
                             }
                         }}
                         >

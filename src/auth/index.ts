@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
-import { BASE_URL } from '../constants';
+import {config} from '../constants';
 
 
 
 export const authenticateUser = async (token: string): Promise<AxiosResponse> => {
     try {
-        const response = await axios.get(`${BASE_URL}/user/auth`, {
+        const response = await axios.get(`${config.BASE_URL}/user/auth`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -19,8 +19,12 @@ export const Navbar: React.FC = () => {
                 </div>
 
                 <div id="divThree">
-                    <button>Sign Up</button>
-                    <button>Login</button>
+                    <a href="/signup">
+                        <button>Sign Up</button>
+                    </a>
+                    <a href="/login">
+                        <button>Login</button>
+                    </a>
                 </div>
 
                 <div id="divFour">

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Layout } from '../components/Layout';
 import { getMainPagePost } from '../services';
+// import Tabs from '@mui/material/Tabs';
+// import Tab from '@mui/material/Tab';
+
 
 export type Post = {
     id: number;
@@ -10,7 +13,7 @@ export type Post = {
 }
 
 
-export const MainPage:React.FC = () => {
+export const Feed:React.FC = () => {
     const userPosts = getMainPagePost();
     const [posts, setPosts] = React.useState<Post[]>([]);
     React.useEffect(() => {
@@ -25,8 +28,9 @@ export const MainPage:React.FC = () => {
         setInterval(fetchData, 1000 * 60 * 5);
     }, [userPosts]);
     return (
-        <Layout showMainPageSideBar={true}>
+        <Layout showFeedSideBar={true} showNavbar={false} showSidebar={false}>
             <div>
+            
                 {
                     posts && posts.map((post: Post) => {
                         return (

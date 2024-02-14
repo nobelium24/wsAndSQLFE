@@ -1,21 +1,21 @@
 import React from "react";
 import { Navbar } from "./Navbar";
 import { SideBar } from "./Sidebar";
-import { MainPageSideBar } from "./MainPageSideBar";
+import { Feed } from "./FeedSideBar";
 
 type LayoutProps = {
     children: React.ReactNode;
     showNavbar?: boolean;
     showSidebar?: boolean;
-    showMainPageSideBar?: boolean;
+    showFeedSideBar?: boolean;
 }
 
-export const Layout: React.FC<LayoutProps> = ({children, showNavbar = true, showSidebar = true, showMainPageSideBar = true }) => {
+export const Layout: React.FC<LayoutProps> = ({children, showNavbar = true, showSidebar = true, showFeedSideBar = true }) => {
     return (
         <>
         {showNavbar && <Navbar/>}
         {showSidebar && <SideBar/>}
-        {showMainPageSideBar && <MainPageSideBar/>}
+        {showFeedSideBar && <Feed/>}
         {children}
         </>
     )

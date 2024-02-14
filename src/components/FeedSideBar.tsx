@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
-import "../sideBar.scss";
+import "../feedSideBar.scss";
 
 
-export const MainPageSideBar: React.FC = () => {
+export const Feed: React.FC = () => {
     const [sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);

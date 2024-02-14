@@ -1,0 +1,59 @@
+#sideBarDiv{
+    height: 100vh;
+    background-color: #595959;
+    box-shadow: 0px 0px 10px 0px #000000;
+    position: fixed;
+    ul{
+        list-style-type: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        li{
+            // height: 25px;
+            border-bottom: 1px solid black;
+            width: 100%;
+            padding-top: 15px !important;
+            padding-bottom: 15px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+#closeButton{
+    position: relative;
+    left: 70%;
+    top: 10px;
+    z-index: 1;
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 10px 20px !important;
+    border-radius: 5px;
+}
+
+// #toggleButton{
+//     display: none;
+//     background-color: #595959;
+// }
+
+#toggleButton{
+    display: block !important;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    z-index: 1;
+}
+
+// @media (max-width:700px) {
+//     #toggleButton{
+//         display: block;
+//         position: absolute;
+//         top: 15px;
+//         left: 10px;
+//         z-index: 1;
+//     }
+// }

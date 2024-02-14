@@ -70,16 +70,22 @@ const SignUpPage:React.FC = () => {
                         onSubmit={async(values: FormValues)=>{
                             setLoading(true);
                             console.log(values)
-                            const response = await signUp(values)
-                            console.log(response)
-
-                            if(response.status === 201){
+                            try {
+                                const response = await signUp(values)
+                                console.log(response)
+    
+                                if(response.status === 201){
+                                    setLoading(false);
+                                    toast.success('Account created successfully');
+                                    navigate('/login');
+                                }else{
+                                    setLoading(false);
+                                    toast.error('An error occurred. Please try again');
+                                }
+                            } catch (error) {
+                                toast.error('Network error');
+                            }finally {
                                 setLoading(false);
-                                toast.success('Account created successfully');
-                                navigate('/login');
-                            }else{
-                                setLoading(false);
-                                toast.error('An error occurred. Please try again');
                             }
 
                         }}

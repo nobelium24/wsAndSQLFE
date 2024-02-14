@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { Post } from '../pages/MainPage';
-import { BASE_URL } from '../constants';
+import { Post } from '../pages/Feed';
+import { config } from '../constants';
 
 
 type SignUpData = {
@@ -14,7 +14,7 @@ type SignUpData = {
 
 export const signUp = async (data: SignUpData): Promise<AxiosResponse> => {
     try {
-        const response = await axios.post(`${BASE_URL}/user/register`, data);
+        const response = await axios.post(`${config.BASE_URL}/user/register`, data);
         console.log(response);
         return response;
     } catch (error) {
@@ -30,7 +30,7 @@ type LoginData = {
 
 export const login = async (data: LoginData): Promise<AxiosResponse> => {
     try {
-        const response = await axios.post(`${BASE_URL}/user/login`, data);
+        const response = await axios.post(`${config.BASE_URL}/user/login`, data);
         console.log(response);
         return response;
     } catch (error) {
@@ -47,7 +47,7 @@ export type PostResponseData = {
 export const getMainPagePost = async (): Promise<AxiosResponse <PostResponseData>> => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${BASE_URL}/posts/getfriendpost`, {
+        const response = await axios.get(`${config.BASE_URL}/posts/getfriendpost`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -57,5 +57,53 @@ export const getMainPagePost = async (): Promise<AxiosResponse <PostResponseData
     } catch (error) {
         console.error(error);
         throw {"message": "An error occurred while fetching posts. Please try again.", error};
+    }
+}
+
+export const likePost = async (postId: number): Promise<AxiosResponse> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${config.BASE_URL}/likepost/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error(error);
+        throw {"message": "An error occurred while liking post. Please try again.", error};
+    }
+}
+
+export const unlikePost = async (postId: number): Promise<AxiosResponse> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${config.BASE_URL}/unlikepost/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error(error);
+        throw {"message": "An error occurred while unliking post. Please try again.", error};
+    }
+}
+
+export const deletePost = async (postId: number): Promise<AxiosResponse> => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.delete(`${config.BASE_URL}/deletepost/${postId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error(error);
+        throw {"message": "An error occurred while deleting post. Please try again.", error};
     }
 }
