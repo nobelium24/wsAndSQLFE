@@ -19,7 +19,7 @@ export const signUp = async (data: SignUpData): Promise<AxiosResponse> => {
         return response;
     } catch (error) {
         console.error(error);
-        throw {"message": "An error occurred while signing up. Please try again.", error};
+        throw { "message": "An error occurred while signing up. Please try again.", error };
     }
 };
 
@@ -35,7 +35,7 @@ export const login = async (data: LoginData): Promise<AxiosResponse> => {
         return response;
     } catch (error) {
         console.error(error);
-        throw {"message": "An error occurred while logging in. Please try again.", error};
+        throw { "message": "An error occurred while logging in. Please try again.", error };
     }
 };
 
@@ -44,7 +44,7 @@ export type PostResponseData = {
     post: Post[]
 }
 
-export const getMainPagePost = async (): Promise<AxiosResponse <PostResponseData>> => {
+export const getMainPagePost = async (): Promise<AxiosResponse<PostResponseData>> => {
     try {
         const token = localStorage.getItem('token');
         const response = await axios.get(`${config.BASE_URL}/posts/getfriendpost`, {
@@ -56,7 +56,7 @@ export const getMainPagePost = async (): Promise<AxiosResponse <PostResponseData
         return response;
     } catch (error) {
         console.error(error);
-        throw {"message": "An error occurred while fetching posts. Please try again.", error};
+        throw { "message": "An error occurred while fetching posts. Please try again.", error };
     }
 }
 
@@ -72,7 +72,7 @@ export const likePost = async (postId: number): Promise<AxiosResponse> => {
         return response;
     } catch (error) {
         console.error(error);
-        throw {"message": "An error occurred while liking post. Please try again.", error};
+        throw { "message": "An error occurred while liking post. Please try again.", error };
     }
 }
 
@@ -88,7 +88,7 @@ export const unlikePost = async (postId: number): Promise<AxiosResponse> => {
         return response;
     } catch (error) {
         console.error(error);
-        throw {"message": "An error occurred while unliking post. Please try again.", error};
+        throw { "message": "An error occurred while unliking post. Please try again.", error };
     }
 }
 
@@ -104,6 +104,14 @@ export const deletePost = async (postId: number): Promise<AxiosResponse> => {
         return response;
     } catch (error) {
         console.error(error);
-        throw {"message": "An error occurred while deleting post. Please try again.", error};
+        throw { "message": "An error occurred while deleting post. Please try again.", error };
     }
 }
+
+// export type PostType = {
+
+// }
+
+// export const addPost = async (): Promise<AxiosResponse> => {
+
+// }

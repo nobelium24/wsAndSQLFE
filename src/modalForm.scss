@@ -1,0 +1,15 @@
+#modalForm{
+    width: 500px;
+    height: fit-content;
+    padding: 20px !important;
+    #modalInput{
+        height: 40px !important;
+        border: 1px solid black;
+    }
+}
+
+@media (max-width:700px) {
+    #modalForm{
+        width: 80% !important;
+    }
+}
